@@ -5,35 +5,54 @@
 A skill that helps you discover and incorporate frameworks, principles, and best practices from recognized masters before generating any new skill. Works with Claude Code, Codex, and other AI agent platforms.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Claude Code Skill](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/skills)
 
 ---
 
 ## Why This Skill?
 
-Most professional domains have outstanding practitioners who have codified their methods through books, talks, interviews, and frameworks. A skill built on these proven methodologies is far more valuable than one created from scratch.
+**The hard part of creating a skill isn't the format — it's knowing the best way to do the thing.**
 
-**The Problem:** When creating a new skill, it's easy to reinvent the wheel or miss well-established best practices.
+Most professional domains have masters who spent decades figuring out what works:
+- Jobs on product, hiring, and marketing
+- Bezos on writing (6-pager) and decision-making
+- Munger on mental models
+- Chris Voss on negotiation
 
-**The Solution:** This skill acts as a "methodology curator" — it identifies relevant experts and frameworks, helps you select the right approaches, then hands off to skill-creator to generate a high-quality skill.
+This skill surfaces their methodologies before you write a single line, so your skill embodies world-class expertise from day one.
 
 ## How It Works
 
 ```
 1. You: "I want to create a skill for user interviews"
 
-2. Skill-from-masters surfaces relevant experts:
+2. Skill-from-masters:
+   ├── Checks local methodology database
+   ├── Searches web for additional experts
+   ├── Finds golden examples of great outputs
+   ├── Identifies common mistakes to avoid
+   └── Cross-validates across sources
+
+3. Surfaces experts:
    - Rob Fitzpatrick (The Mom Test)
    - Steve Portigal (Interviewing Users)
-   - Indi Young (Mental Models)
-   - Clayton Christensen (Jobs to be Done)
+   - Nielsen Norman Group best practices
 
-3. You select which methodologies to incorporate
+4. You select which methodologies to incorporate
 
-4. Skill-from-masters extracts actionable principles
+5. Extracts actionable principles from primary sources
 
-5. Hands off to skill-creator to generate the final skill
+6. Hands off to skill-creator to generate the final skill
 ```
+
+## Key Features
+
+| Feature | Description |
+|---------|-------------|
+| **3-Layer Search** | Local database → Web search for experts → Deep dive on primary sources |
+| **Golden Examples** | Finds exemplary outputs to define quality bar |
+| **Anti-Patterns** | Searches for common mistakes to encode "don't do this" |
+| **Cross-Validation** | Compares multiple experts to find consensus and flag disagreements |
+| **Quality Checklist** | Verifies completeness before generating |
 
 ## Methodology Database
 
@@ -50,16 +69,18 @@ The skill includes a curated database covering 15+ domains:
 | Leadership | Kim Scott, Ray Dalio, Andy Grove |
 | Negotiation | Chris Voss, Fisher & Ury |
 | Startups | Eric Ries, Paul Graham, YC |
+| Decision Making | Jeff Bezos, Charlie Munger, Annie Duke |
 
-Plus an "Oral Tradition" section for experts who share primarily through talks and interviews (Steve Jobs, Elon Musk, Jensen Huang, etc.)
+Plus an **"Oral Tradition"** section for experts who share primarily through talks and interviews (Steve Jobs, Elon Musk, Jensen Huang, Patrick Collison, etc.)
 
 ## Installation
 
 ### Option 1: Clone directly (Recommended)
 
 ```bash
-# Navigate to your Claude Code skills directory
-cd ~/.claude/skills  # or your custom skills path
+# Navigate to your skills directory
+cd ~/.claude/skills  # Claude Code
+# or your platform's skills path
 
 # Clone this skill
 git clone https://github.com/anthropics/skill-from-masters.git
@@ -67,43 +88,50 @@ git clone https://github.com/anthropics/skill-from-masters.git
 
 ### Option 2: Manual installation
 
-1. Download or copy the `skill-from-masters` folder
-2. Place it in your skills directory:
-   - macOS/Linux: `~/.claude/skills/`
-   - Windows: `%USERPROFILE%\.claude\skills\`
+1. Download the `skill-from-masters` folder
+2. Place it in your skills directory
 
 ### Dependency
 
-This skill works in conjunction with **skill-creator**. Make sure skill-creator is also available in your environment.
+This skill works with **skill-creator**. Make sure skill-creator is available in your environment.
 
 ## Usage
 
-Once installed, the skill automatically activates when you:
+The skill automatically activates when you ask to create a new skill. It runs **before** skill-creator to ensure your skill is built on proven methodologies.
 
-- Ask to create a new skill
-- Mention wanting to build on best practices
-- Request a skill for any domain covered in the methodology database
-
-### Example
+### Example Session
 
 **You:** "Help me create a skill for writing product requirement documents"
 
 **Skill-from-masters:**
-> PRD writing spans several domains where experts have codified best practices:
+> Let me search for the best methodologies on PRD writing.
+>
+> *[Searches: "PRD best practices expert", "product requirements document methodology"]*
+>
+> I found several strong frameworks:
 >
 > **Product Management:**
 > - Marty Cagan: Problem-first PRDs, separating problem space from solution space
-> - Teresa Torres: Continuous discovery, outcome-focused requirements
+> - Teresa Torres: Outcome-focused requirements
 >
 > **Business Writing:**
 > - Barbara Minto: Pyramid Principle - lead with conclusion, MECE structure
-> - Amazon: Working backwards, 6-page narrative format
+> - Amazon: Working backwards, 6-pager narrative format
 >
-> Which approaches resonate with how you want PRDs written?
+> **Golden Examples Found:**
+> - Intercom's public PRD template
+> - Linear's product spec format
+>
+> **Common Mistakes:**
+> - Jumping to solutions before defining the problem
+> - Writing for engineers instead of for alignment
+> - Missing success metrics
+>
+> Which approaches resonate? Or should I search deeper into any of them?
 
 **You:** "I like Amazon's approach combined with Cagan's problem-first thinking."
 
-**Skill-from-masters:** *extracts key principles from both, then generates skill via skill-creator*
+**Skill-from-masters:** *[Fetches primary sources on Amazon's methodology, extracts principles, then generates skill via skill-creator]*
 
 ## File Structure
 
@@ -118,22 +146,24 @@ skill-from-masters/
 └── .gitignore
 ```
 
-## Extending the Database
+## Quality Checklist
 
-The methodology database can be extended. If a domain isn't covered:
+Before finalizing any skill, this skill verifies:
 
-1. Search for recognized experts in that field
-2. Identify their core frameworks or methodologies
-3. Add to the appropriate section in `methodology-database.md`
-4. Submit a pull request!
+- [ ] Searched beyond the local database
+- [ ] Found primary sources, not just summaries
+- [ ] Found golden examples of the output
+- [ ] Identified common mistakes to avoid
+- [ ] Cross-validated across multiple experts
+- [ ] Encoded specific, actionable steps (not vague principles)
 
 ## Contributing
 
 Contributions welcome! Especially:
 
 - Adding new domains and experts to the methodology database
-- Improving existing framework descriptions
-- Adding source links and references
+- Improving framework descriptions with source links
+- Sharing examples of skills created with this approach
 
 Please:
 1. Fork the repository
@@ -146,4 +176,4 @@ MIT License — feel free to use, modify, and distribute.
 
 ---
 
-**Philosophy:** The best skills aren't invented from scratch — they're built on the accumulated wisdom of masters who came before.
+**Philosophy:** Quality isn't written. It's selected.
