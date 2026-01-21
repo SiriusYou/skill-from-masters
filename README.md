@@ -139,17 +139,26 @@ This repository contains the following skills:
 
 | Skill | Description |
 |-------|-------------|
-| **[skill-from-masters](skill-from-masters/SKILL.md)** | Create new skills based on proven methodologies from domain experts. Searches for frameworks, principles, and best practices before generating. |
-| **[search-skill](skills/search-skill/SKILL.md)** | Search for existing skills from trusted marketplaces. Queries 5 verified sources (anthropics/skills, ComposioHQ, travisvn, skills.sh, skillsmp.com) with quality filtering. |
+| **[skill-from-masters](skill-from-masters/SKILL.md)** | Create new skills based on proven methodologies from domain experts. |
+| **[search-skill](skills/search-skill/SKILL.md)** | Search for existing skills from trusted marketplaces. |
+| **[skill-from-github](skills/skill-from-github/SKILL.md)** | Learn from high-quality GitHub projects and create skills based on that knowledge. |
 
 ### skill-from-masters
 
-The core skill. When you want to **create a new skill**, it helps you discover expert methodologies first:
+When you want to **create a new skill based on expert methodologies**:
 
 - 3-layer search: local database → web experts → primary sources
 - Finds golden examples and anti-patterns
 - Cross-validates across multiple experts
 - Hands off to skill-creator for final generation
+
+**Example:**
+```
+You: "Help me create a skill for user interviews"
+→ Finds: Rob Fitzpatrick (The Mom Test), Steve Portigal, Nielsen Norman Group
+→ You select which methodologies to incorporate
+→ Generates skill with those principles encoded
+```
 
 ### search-skill
 
@@ -160,8 +169,32 @@ When you want to **find an existing skill** instead of creating one:
 - Filters out low-quality results (stars < 10, outdated, no SKILL.md)
 - Security checks for suspicious code patterns
 
-**Example:** "I need a skill for frontend design, automated testing, and code review"
+**Example:**
+```
+You: "I need a skill for frontend design, automated testing, and code review"
+→ Searches: anthropics/skills, ComposioHQ, travisvn, skills.sh, skillsmp.com
 → Returns: frontend-design (official), webapp-testing (official), code-review-excellence (26k stars)
+```
+
+### skill-from-github
+
+When you want to **learn from a GitHub project** and turn that knowledge into a skill:
+
+- Search GitHub for quality projects (stars > 100, actively maintained)
+- Present options and wait for your confirmation
+- Deep dive into selected project (README, source code, examples)
+- Summarize what it learned, then create skill via skill-creator
+
+**Example:**
+```
+You: "I want to convert images to ASCII art"
+→ Searches GitHub, finds: ascii-image-converter (3.1k stars), RASCII (224 stars)
+→ You select ascii-image-converter
+→ Learns: brightness-to-character mapping, aspect ratio handling, color techniques
+→ Creates skill encoding that knowledge (not just wrapping the tool)
+```
+
+**Key difference:** This skill encodes the *knowledge* from projects, so the skill works even without the original tool installed.
 
 ## File Structure
 
@@ -173,8 +206,10 @@ skill-from-masters/
 │       ├── methodology-database.md           # Curated expert frameworks
 │       └── skill-taxonomy.md                 # 11 skill type categories
 ├── skills/
-│   └── search-skill/
-│       └── SKILL.md                          # Search existing skills from trusted sources
+│   ├── search-skill/
+│   │   └── SKILL.md                          # Search existing skills from trusted sources
+│   └── skill-from-github/
+│       └── SKILL.md                          # Learn from GitHub projects
 ├── README.md
 ├── LICENSE
 └── .gitignore
