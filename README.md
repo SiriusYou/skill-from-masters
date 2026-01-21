@@ -133,14 +133,48 @@ The skill automatically activates when you ask to create a new skill. It runs **
 
 **Skill-from-masters:** *[Fetches primary sources on Amazon's methodology, extracts principles, then generates skill via skill-creator]*
 
+## Skills
+
+This repository contains the following skills:
+
+| Skill | Description |
+|-------|-------------|
+| **[skill-from-masters](skill-from-masters/SKILL.md)** | Create new skills based on proven methodologies from domain experts. Searches for frameworks, principles, and best practices before generating. |
+| **[search-skill](skills/search-skill/SKILL.md)** | Search for existing skills from trusted marketplaces. Queries 5 verified sources (anthropics/skills, ComposioHQ, travisvn, skills.sh, skillsmp.com) with quality filtering. |
+
+### skill-from-masters
+
+The core skill. When you want to **create a new skill**, it helps you discover expert methodologies first:
+
+- 3-layer search: local database → web experts → primary sources
+- Finds golden examples and anti-patterns
+- Cross-validates across multiple experts
+- Hands off to skill-creator for final generation
+
+### search-skill
+
+When you want to **find an existing skill** instead of creating one:
+
+- Searches only 5 trusted sources (no random internet results)
+- Tier-based priority: official → curated → aggregators
+- Filters out low-quality results (stars < 10, outdated, no SKILL.md)
+- Security checks for suspicious code patterns
+
+**Example:** "I need a skill for frontend design, automated testing, and code review"
+→ Returns: frontend-design (official), webapp-testing (official), code-review-excellence (26k stars)
+
 ## File Structure
 
 ```
 skill-from-masters/
 ├── skill-from-masters/
-│   ├── SKILL.md                              # Core instructions
+│   ├── SKILL.md                              # Core skill: create from expert methodologies
 │   └── references/
-│       └── methodology-database.md           # Curated expert frameworks
+│       ├── methodology-database.md           # Curated expert frameworks
+│       └── skill-taxonomy.md                 # 11 skill type categories
+├── skills/
+│   └── search-skill/
+│       └── SKILL.md                          # Search existing skills from trusted sources
 ├── README.md
 ├── LICENSE
 └── .gitignore
